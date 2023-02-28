@@ -6,41 +6,57 @@
             <el-header>
             <!-- layout响应式布局 -->
             <el-row class="elrowlist" :gutter="10" type="flex">
+                <!-- 系统名 -->
                 <el-col class="systemtitle" :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
                     <div class="grid-content ">
                         智慧照明系统
                     </div>
                 </el-col>
+                <!-- 单灯图标 -->
                 <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
                     <div class="grid-content">
                         <i class="el-icon-s-opportunity" @click="tolamp"></i>
                     </div>
                 </el-col>
+                <!-- 地图图标 -->
                 <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
                     <div class="grid-content">
                         <i class="el-icon-location" @click="tomap"></i>
                     </div>
                 </el-col>
+                <!-- 集控器图标 -->
                 <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
                     <div class="grid-content">
                         <i class="el-icon-menu" @click="tocontrol"></i>
                     </div>
                 </el-col>
+                <!-- 策略设置图标 -->
                 <el-col :xs="4" :sm="6" :md="4" :lg="3" :xl="1">
                     <div class="grid-content">
                         <i class="el-icon-s-tools" @click="tostrategy"></i>
                     </div>
                 </el-col>
+                <!-- 搜索框 -->
                 <el-col :xs="0" :sm="6" :md="8" :lg="9" :xl="11">
-                    <div class="grid-content ">
+                    <div class="grid-content search ">
                         <el-input v-model="input" placeholder="请输入内容">
                             <el-button @click="searchdata" slot="append" icon="el-icon-search"></el-button>
                         </el-input>
                     </div>
                 </el-col>
+                <!-- 头像 -->
                 <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-                    <div class="grid-content">
-                        <img @click="logininfo" src="../../assets/user.jpg">
+                    <div class="grid-content" style="width:100px;margin-top:-5px;">
+                        <img v-if="islogin" @click="logininfo" src="../../assets/user.jpg">
+                       
+                        <div @click="logout" v-else class="grid-content" style="font-size:14px;margin-top:22px">点击登录</div>
+
+                    </div>
+                </el-col>
+                <!-- 用户名 -->
+                <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+                    <div class="grid-content ">
+                        {{ username }}
                     </div>
                 </el-col>
             </el-row>
@@ -68,7 +84,6 @@
                     <i class="el-icon-location"></i>
                     <span>地图信息</span>
                     </template>
-
                     <el-menu-item index="/map">地图</el-menu-item> 
                 </el-submenu>
 
@@ -81,11 +96,10 @@
                     <el-menu-item index="/strategy">策略设置</el-menu-item>
                     <el-menu-item index="/historydata">单灯历史数据</el-menu-item> 
                     <el-menu-item index="/control">集控器</el-menu-item> 
-                
                 </el-submenu>
+
                 </el-menu>
                
-
             </el-col>
             </el-row>
                 </el-aside>
@@ -101,6 +115,10 @@
 export default {
     data() {
         return {
+            // 用户名
+            username:"",
+            // 用户是否登录
+            islogin:true,
             // 登录退出菜单的隐藏
             isshow:false,
             input: ''
@@ -110,7 +128,14 @@ export default {
 
     },
     mounted() {
-
+        let userinfo = sessionStorage['userinfo']?JSON.parse(sessionStorage['userinfo']):false
+        if(!userinfo){
+            this.islogin = false
+        }else{
+            this.username = userinfo.user
+        }
+        // console.log(userinfo);
+        
     },
     methods: {
         // 搜索查询
@@ -149,6 +174,12 @@ export default {
 </script>
 
 <style>
+.el-col .grid-content{
+    margin-top: 15px;
+}
+.el-col .search{
+    margin-top: 5px;
+}
   .elrowlist .el-col{
     border-radius: 4px;
     width: 30px;
@@ -157,7 +188,8 @@ export default {
         width: 160px;
     }
     .el-row .el-col:nth-child(6){
-        width: 80vw;
+        width: 74vw;
+        margin-right: 30px;
     }
     .el-row .el-col:nth-child(7){
         width: 60px;
@@ -199,11 +231,11 @@ export default {
         z-index: 1;
     }
     .el-header {
-        line-height: 60px;
+        /* line-height: 60px; */
         font-size: large;
         color: #fff;
         background-color: skyblue;
-        height: 80px;
+        /* height: 80px; */
         display: flex;
         align-items: center;
         justify-content:space-between ;

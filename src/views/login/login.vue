@@ -39,6 +39,12 @@ export default {
         } else {
           callback();
         }
+        // if(value.length >3 || value.length <6){
+        //   callback(new Error('请输入账号'));
+        //   alert('账号为3-6位')
+        // }else{
+        //   callback();
+        // }
       };
         return {
             ruleForm: {

@@ -2,10 +2,15 @@
     <div style="height: 500px;">
       <!-- 多了ref，用于获取该组件调用setOption方法 -->
       <chart-block ref="chart2"></chart-block>
+      <div>
+        <button @click="renum">修改数量</button>
+      </div>
     </div>
+    
   </template>
   
   <script>
+
   // 把配置项放在外面
   let option2 = {
     title: {
@@ -47,11 +52,23 @@
   }
   export default {
     data() {
-      return {}
+      return {
+        
+      }
     },
+    
     // 在父组件的mounted中调用setOption
     mounted() {
       this.$refs.chart2.setOption(option2)
+    },
+    methods:{
+     //修改数量
+      renum(){ 
+        console.log(option2.series[0].data[0].value)
+        option2.series[0].data[0].value = 111
+        this.$refs.chart2.setOption(option2)
+       
+      }
     }
   }
   </script>

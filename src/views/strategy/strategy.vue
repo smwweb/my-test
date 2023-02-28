@@ -1,11 +1,9 @@
 <template>
   <div>
     <template>
-      <el-button type="info" plain>单灯策略：</el-button>
-      <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-        <el-tab-pane label="策略一" name="first">
-
-          <el-form ref="form1" :model="form1" label-width="120px">
+      <strong>单灯策略</strong>
+      <!-- form表单 -->
+        <el-form ref="form1" :model="form1" label-width="120px">
             <!-- 1 -->
             <el-form-item label="上电">
               <el-col :span="5">
@@ -16,16 +14,11 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm1" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum1" type="number"></el-input>
               </el-col>
@@ -40,18 +33,11 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm2" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum2" type="number"></el-input>
               </el-col>
@@ -66,17 +52,11 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm3" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum3" type="number"></el-input>
               </el-col>
@@ -91,18 +71,11 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm4" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum4" type="number"></el-input>
               </el-col>
@@ -117,18 +90,11 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm5" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum5" type="number"></el-input>
               </el-col>
@@ -143,319 +109,45 @@
                 ></el-time-picker>
               </el-col>
               <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-
-              </el-col>
+              <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
                 <el-input v-model="form1.munm6" type="number"></el-input>
               </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-
-              </el-col>
+              <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
                 <el-input v-model="form1.anum6" type="number"></el-input>
               </el-col>
             </el-form-item>
-            <el-button  type="primary" class="queren">确认</el-button>
-          </el-form>
-        </el-tab-pane>
-        <el-tab-pane label="策略二" name="second">
-          
-            <el-form ref="form2" :model="form2" label-width="120px">
-            <!-- 1 -->
-            <el-form-item label="上电">
+           
+            <el-form-item>
               <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form2.date1"
-                  style="width: 100%"
-                ></el-time-picker>
+                <el-button  type="primary" class="queren">设置为策略一</el-button>
               </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
+              <el-col :span="5">
+                <el-button  type="primary" class="queren">设置为策略二</el-button>
               </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
+              <el-col :span="5">
+                <el-button  type="primary" class="queren">设置为策略三</el-button>
               </el-col>
             </el-form-item>
-            <!-- 2 -->
-            <el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form2.date2"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date2"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form2.date4"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form2.date5"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form2.date6"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item>
-            <el-button  type="primary"  class="queren">确认</el-button>
-          </el-form>
-        </el-tab-pane>
-        <el-tab-pane label="策略三" name="third">
-            <el-form ref="form3" :model="form3" label-width="120px">
-            <!-- 1 -->
-            <el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date1"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item>
-            <!-- 2 -->
-            <el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date2"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date3"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date4"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date5"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item><el-form-item label="上电">
-              <el-col :span="5">
-                <el-time-picker
-                  placeholder="选择时间"
-                  v-model="form3.date6"
-                  style="width: 100%"
-                ></el-time-picker>
-              </el-col>
-              <el-col :span="2">后</el-col>
-              <el-col :span="3">
-                <el-button round>主灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-              <el-col :span="2">-</el-col>
-              <el-col :span="3">
-                <el-button round>辅灯</el-button>
-              </el-col>
-              <el-col :span="3">
-                <el-input v-model="input" type="number"></el-input>
-              </el-col>
-            </el-form-item>
-            <el-button  type="primary"  class="queren">确认</el-button>
-          </el-form>
-        </el-tab-pane>
-      </el-tabs>
-      <el-button type="info" plain>集控器策略：</el-button>
+        </el-form>
+        <hr/>
+        <strong>集控器策略</strong>
+        <div style="margin-top: 20px;font-size:15px">
+          <strong>开灯时间</strong>
+        </div>
+        
       <div class="lampon">
-        开灯：提前<el-input type="number" v-model="time1" placeholder="时间" style="width: 80px;"></el-input>分
-        推迟<el-input type="number" v-model="time2" placeholder="时间"  style="width: 80px;"></el-input>分
+        提前：<el-input type="number" v-model="time1" placeholder="时间" style="width: 80px;"></el-input>分
+        推迟：<el-input type="number" v-model="time2" placeholder="时间"  style="width: 80px;"></el-input>分
       </div>
+
+        <div style="margin-top:20px;font-size:15px">
+          <strong>关灯时间</strong>
+        </div>
       <div class="lampoff">
-        关灯：提前<el-input type="number" v-model="time3" placeholder="时间" style="width: 80px;"></el-input>分
-        推迟<el-input type="number" v-model="time4" placeholder="时间"  style="width: 80px;"></el-input>分
+        提前：<el-input type="number" v-model="time3" placeholder="时间" style="width: 80px;"></el-input>分
+        推迟：<el-input type="number" v-model="time4" placeholder="时间"  style="width: 80px;"></el-input>分
       </div>
       <el-button  type="primary">确认</el-button>
     </template>
@@ -470,7 +162,6 @@ export default {
         input:'',
         input1:'',
        
-
         form1: {
         name: "",
         region:"",
@@ -497,7 +188,7 @@ export default {
         resource: "",
         desc: "",
       },
-      form2: {
+        form2: {
         name: "",
         region:"",
         date1: "",
@@ -511,7 +202,7 @@ export default {
         resource: "",
         desc: "",
       },
-      form3: {
+        form3: {
         name: "",
         region:"",
         date1: "",
@@ -534,23 +225,27 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    handleClick(tab, event){
-      console.log(tab, event);
-    }
+   
   },
 };
 </script>
 
 <style scoped>
+.el-col{
+  margin-left: 15px;
+}
 .lampon{
   margin-top: 20px;
+  font-size: 14px;
 }
 .lampoff{
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 14px;
 }
+
 .queren{
-  margin-left: 80%;
+  margin-left: 20%;
 }
 .el-form{
     width: 800px;

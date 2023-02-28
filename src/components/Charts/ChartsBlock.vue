@@ -22,8 +22,8 @@
         handler(newValue, oldValue) {
           this.chart.setOption(newValue)
         },
-        // 因为option是个对象，而我们对于echarts的配置项，要更改的数据往往不在一级属性里面
-        // 所以这里设置了deep:true，vue文档有说明
+        // 因为option是个对象,而我们对于echarts的配置项,要更改的数据往往不在一级属性里面
+        // 所以这里设置了deep:true,vue文档有说明
         deep: true
       }
     },
@@ -56,7 +56,7 @@
       setOption(option) {
         this.chart && this.chart.setOption(option)
       },
-      // 节流函数,来自Lodash，这里可以自己写一个简单点的
+      // 节流函数,来自Lodash,这里可以自己写一个简单点的
       // 如果有多个地方用到，也可以使用引入的方式
       throttle(func, wait, options) {
         let time, context, args

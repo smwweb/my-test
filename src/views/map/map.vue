@@ -7,7 +7,7 @@
       @ready="handler"
       style="width: 100%; height: 100%"
     >
-    <!-- 覆盖物 -->
+    <!-- 覆盖物  路灯图标 -->
       <bm-marker v-for="marker of markers"
         :key="marker.id"
         :position="{ lng: marker.lng, lat: marker.lat }"
@@ -23,6 +23,7 @@
           @close="infoWindowClose(marker)"
           @open="infoWindowOpen(marker)"
         >
+        <!-- <h1>111111</h1> -->
         </bm-info-window>
       </bm-marker>
 
@@ -80,7 +81,11 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    // 移入点坐标赋值
+    // 移出
+    defineDetail(marker){
+        marker.showFlag = false;
+    },
+    // 鼠标移入点坐标赋值
       lookDetail(marker){
         marker.showFlag = true;
         this.infoWindow = marker;
