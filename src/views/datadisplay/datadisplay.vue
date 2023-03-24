@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 500px;">
+    <div style="height: 500px;margin-top:20px">
       <!-- 多了ref，用于获取该组件调用setOption方法 -->
       <chart-block ref="chart2"></chart-block>
       <div>
@@ -64,7 +64,7 @@
     methods:{
      //修改数量
       renum(){ 
-        console.log(option2.series[0].data[0].value)
+        //console.log(option2.series[0].data[0].value)
         option2.series[0].data[0].value = 111
         this.$refs.chart2.setOption(option2)
        

@@ -37,7 +37,7 @@
   
       // 添加窗口改变监听
       this.chart._resize = this.throttle(() => {
-        console.log('1212')
+        //console.log('1212')
         this.chart.resize()
       }, 200)
   

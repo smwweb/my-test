@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import BaiduMap from 'vue-baidu-map'
+// import axios from 'axios'
 
+
+// axios.defaults.headers.post['Content-Type']='application/json
 
 // 百度地图
 Vue.use(BaiduMap, {
@@ -21,6 +24,8 @@ Vue.use(ChartBlock)
 
 // 引入全局样式文件
 import './assets/css/reset.css'
+
+
 
 Vue.config.productionTip = false
 

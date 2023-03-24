@@ -13,7 +13,7 @@ const routes = [
       {
         path:'datadisplay',
         meta:{
-          title:'地图'
+          title:'数据展示'
         },
         component:()=>import('../views/datadisplay/datadisplay.vue')
 
@@ -51,19 +51,19 @@ const routes = [
 
       },
       {
-        path:'lampinfo',
-        meta:{
-          title:'单灯信息'
-        },
-        component:()=>import('../views/lampinfo/lampinfo.vue')
-
-      },
-      {
         path:'strategy',
         meta:{
           title:'策略设置'
         },
         component:()=>import('../views/strategy/strategy.vue')
+
+      },
+      {
+        path:'warning',
+        meta:{
+          title:'报警信息'
+        },
+        component:()=>import('../views/warning/warning.vue')
 
       },
     ]
@@ -88,12 +88,13 @@ const router = new VueRouter({
 // from 从哪个路径跳转而来
 // next 是个函数，表示放行 next() 放行  next('/login') 强制跳转
 router.beforeEach((to, from, next) => {
+  // console.log(to,from);
   if (to.path.startsWith('/login')) {
       window.sessionStorage.removeItem('userinfo')
       next()
   } else {
       let user = window.sessionStorage.getItem('userinfo')
-      // console.log(user);
+      // console.log(typeof(user));
       if (!user) {
           next({
               path: '/login'

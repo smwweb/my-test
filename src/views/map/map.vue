@@ -1,5 +1,5 @@
 <template>
-  <div class="BaiDuMap">
+  <div class="BaiDuMap" style="margin-top:20px">
     <baidu-map
       :center="center"
       :zoom="zoom"
@@ -10,14 +10,14 @@
     <!-- 覆盖物  路灯图标 -->
       <bm-marker v-for="marker of markers"
         :key="marker.id"
-        :position="{ lng: marker.lng, lat: marker.lat }"
+        :position="{ lng: marker.longitude, lat: marker.latitude }"
         @mouseover="lookDetail(marker)"
         @mouseout="defineDetail(marker)"
         :icon="{url: 'http://47.110.89.129:8911/assets/img/cc-marker-icon1.png', size: {width:45, height: 54},imageSize:{width:20,height:20}}"
       >
     <!-- 信息窗口 -->
         <bm-info-window
-          :title="infoWindow.name"
+          :title="infoWindow.deviceName"
           :position="{ lng: infoWindow.lng, lat: infoWindow.lat }"
           :show="marker.showFlag"
           @close="infoWindowClose(marker)"
@@ -45,42 +45,38 @@
 </template>
 
 <script>
+import { Mapdatas } from '../../request/api';
+
 export default {
   data() {
     return {
       // 测试数据
-      markers: [
-    {
-      id:1,
-      lng: 116.4,
-      lat: 39.91,
-      name:'测试一下',
-      showFlag:false //flag放在每一条数据里
-    },
-    {
-      id:2,
-      lng: 116.5,
-      lat: 39.91,
-      name:'测试2',
-      showFlag:false //flag放在每一条数据里
-    },
-    {
-      id:3,
-      lng: 120.30,
-      lat: 30.42,
-      name:'余杭区',
-      showFlag:false
-    }
-  ],
+      markers: [],
       infoWindow:{},
       active: false,
       center: { lng: 0, lat: 0 },
       zoom: 3,
     };
   },
+
   created() {},
-  mounted() {},
+  mounted() {
+    this.getMapList()
+  },
   methods: {
+    // 地图信息
+   getMapList(){
+      Mapdatas().then(d=>{
+        d.data.map(item=>{
+          item.showFlag = false
+        })
+        // console.log(d.data,"999999");
+        this.markers = d.data
+        // console.log(this.markers,'1111');
+      }).catch(e=>{
+        console.log('接口调用失败');
+      })
+    },
     // 移出
     defineDetail(marker){
         marker.showFlag = false;
@@ -110,15 +106,15 @@ export default {
     // 绘制地图
     handler({ Bmap, map }) {
       // console.log(Bmap,map);
-      this.center.lng = 116.404;
-      this.center.lat = 39.915;
+      this.center.lng = 120.15;
+      this.center.lat = 30.28;
       this.zoom = 15;
     },
   },
 };
 </script>
 
-<style scoped>
+<style>
 .BaiDuMap {
   width: 100%;
   height: 100%;

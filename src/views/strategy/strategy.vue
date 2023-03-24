@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <template>
-      <strong>单灯策略</strong>
+  <div style="margin-top:20px">
+    <!-- <template> -->
+      <el-divider content-position="left">单灯策略</el-divider>
+      
       <!-- form表单 -->
         <el-form ref="form1" :model="form1" label-width="120px">
             <!-- 1 -->
@@ -16,11 +17,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm1" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm1" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum1" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.anum1" type="number"></el-input>
               </el-col>
             </el-form-item>
             <!-- 2 -->
@@ -35,11 +36,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm2" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm2" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum2" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.anum2" type="number"></el-input>
               </el-col>
             </el-form-item>
             <!-- 3 -->
@@ -54,11 +55,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm3" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm3" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum3" type="number"></el-input>
+                <el-input  min="1" max="100" v-model="form1.anum3" type="number"></el-input>
               </el-col>
             </el-form-item>
             <!-- 4 -->
@@ -73,11 +74,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm4" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm4" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum4" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.anum4" type="number"></el-input>
               </el-col>
             </el-form-item>
             <!-- 5 -->
@@ -92,11 +93,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm5" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm5" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum5" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.anum5" type="number"></el-input>
               </el-col>
             </el-form-item>
             <!-- 6 -->
@@ -111,11 +112,11 @@
               <el-col :span="2">后</el-col>
               <el-col :span="3">主灯调光：</el-col>
               <el-col :span="3">
-                <el-input v-model="form1.munm6" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.munm6" type="number"></el-input>
               </el-col>
               <el-col :span="3">辅灯调光：</el-col> 
               <el-col :span="3">
-                <el-input v-model="form1.anum6" type="number"></el-input>
+                <el-input min="1" max="100" v-model="form1.anum6" type="number"></el-input>
               </el-col>
             </el-form-item>
            
@@ -131,26 +132,67 @@
               </el-col>
             </el-form-item>
         </el-form>
-        <hr/>
-        <strong>集控器策略</strong>
-        <div style="margin-top: 20px;font-size:15px">
-          <strong>开灯时间</strong>
+        <el-divider content-position="left">集控器策略</el-divider>
+       
+        
+        <div class="left" style="float:left">
+              <div style="margin-top: 20px;font-size:14px">
+              <strong>开灯时间(根据日出日落)</strong>
+            </div>
+            
+          <div class="lampon">
+            提前：<el-input type="number" min="0" v-model="time1" placeholder="时间" style="width: 80px;"></el-input>分
+            推迟：<el-input type="number" min="0" v-model="time2" placeholder="时间"  style="width: 80px;"></el-input>分
+          </div>
+
+            <div style="margin-top:20px;font-size:14px">
+              <strong>关灯时间</strong>
+            </div>
+          <div class="lampoff">
+            提前：<el-input type="number" min="0" v-model="time3" placeholder="时间" style="width: 80px;"></el-input>分
+            推迟：<el-input type="number" min="0" v-model="time4" placeholder="时间"  style="width: 80px;"></el-input>分
+          </div>
+          <el-button  type="primary">确认</el-button>
+        </div>
+
+
+        <div class="right" style="float:left;margin-left:200px">
+              <div style="margin-top: 20px;font-size:14px">
+              <strong>开灯时间(手动设置)</strong>
+            </div>
+            
+          <div class="lampon">
+              <el-time-select
+                  v-model="onvalue"
+                  :picker-options="{
+                    start: '05:30',
+                    step: '00:15',
+                    end: '20:30'
+                  }"
+                  placeholder="选择时间">  
+              </el-time-select>
+
+          </div>
+
+            <div style="margin-top:20px;font-size:14px">
+              <strong>关灯时间</strong>
+            </div>
+          <div class="lampoff">
+            <el-time-select
+                  v-model="offvalue"
+                  :picker-options="{
+                    start: '05:30',
+                    step: '00:15',
+                    end: '20:30'
+                  }"
+                  placeholder="选择时间">
+              </el-time-select>
+          </div>
+          <el-button  type="primary">确认</el-button>
         </div>
         
-      <div class="lampon">
-        提前：<el-input type="number" v-model="time1" placeholder="时间" style="width: 80px;"></el-input>分
-        推迟：<el-input type="number" v-model="time2" placeholder="时间"  style="width: 80px;"></el-input>分
-      </div>
-
-        <div style="margin-top:20px;font-size:15px">
-          <strong>关灯时间</strong>
-        </div>
-      <div class="lampoff">
-        提前：<el-input type="number" v-model="time3" placeholder="时间" style="width: 80px;"></el-input>分
-        推迟：<el-input type="number" v-model="time4" placeholder="时间"  style="width: 80px;"></el-input>分
-      </div>
-      <el-button  type="primary">确认</el-button>
-    </template>
+        
+    <!-- </template> -->
   </div>
 </template>
 
@@ -158,6 +200,8 @@
 export default {
   data() {
     return {
+        onvalue:'',
+        offvalue:'',
         activeName:'first',
         input:'',
         input1:'',
@@ -231,13 +275,19 @@ export default {
 </script>
 
 <style scoped>
+
+/* .left button{
+  margin-left: 200px;
+} */
 .el-col{
   margin-left: 15px;
 }
+/* 开灯按钮 */
 .lampon{
   margin-top: 20px;
   font-size: 14px;
 }
+/* 关灯按钮 */
 .lampoff{
   margin-top: 20px;
   margin-bottom: 20px;

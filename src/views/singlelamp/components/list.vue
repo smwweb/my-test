@@ -1,403 +1,555 @@
 <template>
-    <div>
-        <!-- 布局容器 -->
-        <el-container>
-            <!-- 左侧菜单 -->
-            <el-aside width="300px">
-                <el-row class="tac">
-            <!-- 导航菜单 -->
-            <el-col>
-                <el-menu
-                    :unique-opened=true
-                    default-active="2"
-                    class="el-menu-vertical-demo"
-                    background-color="#fff"
-                   >
-                 <el-submenu index="1">
-                    <template slot="title">
-                    <span>景区</span>
-                    </template>
-                    <el-menu-item class="el-icon-s-data" index="1" @click="readinfo(1)">白华顶</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="2" @click="readinfo(2)">白云路西段</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="3">白云路中段</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="4">朝阳洞</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="5">金沙路</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="6">法雨路_大乘庵车站东侧1号</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="7">观音大佛变电站</el-menu-item> 
-                    <el-menu-item class="el-icon-s-data" index="8">龙沙隧道北口配电柜</el-menu-item> 
-                
-                </el-submenu>
-                </el-menu>
-               
+  <div>
+    <!-- 布局容器 -->
+    <el-container>
+      <!-- 左侧菜单 -->
+      <el-aside width="230px">
+        <el-row class="tac">
+          <!-- 导航菜单 -->
+          <el-col>
+            <el-menu
+              :unique-opened="true"
+              default-active="1"
+              class="el-menu-vertical-demo"
+              background-color="#fff"
+            >
+              <el-submenu index="1">
+                <template slot="title">
+                  <span>景区</span>
+                </template>
+                <el-menu-item class="el-icon-s-data" index="1" @click="readinfo(1)">文三路</el-menu-item>
+                <!-- <el-menu-item class="el-icon-s-data" index="2" @click="readinfo(2)">白云路西段</el-menu-item>  -->
+              </el-submenu>
+            </el-menu>
+          </el-col>
+        </el-row>
+      </el-aside>
+      <!-- 中间内容 -->
+      <el-main style="margin-top:10px">
+        <!-- 顶部控制按键 -->
+        <ul class="rowlist">
+          <li>
+            <el-button type="primary" @click="mainon" plain>主灯开</el-button>
+          </li>
+          <li>
+            <el-button type="primary" @click="mainoff" plain>主灯关</el-button>
+          </li>
 
-            </el-col>
-            </el-row>
-            </el-aside>
-            <!-- 中间内容 -->
-            <el-main>
-                <!-- 顶部控制按键 -->
-                <!-- layout分栏间隔 -->
-                <el-row class="rowlist" :gutter="20">
-                    <el-col :span="6"><div class="grid-content">
-                        <el-button type="primary" @click="mainon">主灯开</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content">
-                        <el-button type="primary">辅灯开</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        主灯调光：<el-input  v-model="num1" placeholder="0~100"></el-input>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="primary" @click="confirm1">确认</el-button>               
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        辅灯调光：<el-input v-model="num2" placeholder="0~100"></el-input>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button  type="primary" @click="confirm2">确认</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">策略一</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">策略二</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">策略三</el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">分组一
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">分组二
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                    </div></el-col>
-                    <el-col :span="6"><div class="grid-content ">
-                        <el-button type="success">分组三
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                    </div></el-col>
-                </el-row>
+          <li>
+            <el-button type="primary" @click="auxon" plain>辅灯开</el-button>
+          </li>
+          <li>
+            <el-button type="primary" @click="auxoff" plain>辅灯关</el-button>
+          </li>
+          <li>
+            <p>主灯调光:</p>
+          </li>
+          <li>
+            <el-input
+              type="number"
+              oninput="if(value>100)value=100;if(value<0)value=0"
+              v-model="num1"
+            ></el-input>
+          </li>
+          <li>
+            <el-button type="primary" @click="confirm1">确认</el-button>
+          </li>
+          <li>
+            <p>辅灯调光:</p>
+          </li>
+          <li>
+            <el-input
+              type="number"
+              oninput="if(value>100)value=100;if(value<0)value=0"
+              v-model="num2"
+            ></el-input>
+          </li>
+          <li>
+            <el-button type="primary">确认</el-button>
+          </li>
+          <li>
+            <el-button type="success" @click="startegyone" plain>策略一</el-button>
+          </li>
+          <li>
+            <el-button type="success" plain>策略二</el-button>
+          </li>
+          <li>
+            <el-button type="success" plain>分组一</el-button>
+          </li>
+          <li>
+            <el-button type="success" plain>分组二</el-button>
+          </li>
+          <li>
+            <el-button type="success" @click="reflshdata" plain>立刻刷新</el-button>
+          </li>
+        </ul>
+        <!-- v-loading="loading" -->
+        <template>
+          <el-table
+            :default-sort="{prop: 'date', order: 'descending'}"
+           
+            ref="multipleTable"
+            :data="lamplist"
+            :header-cell-style="{'text-align':'center'}"
+            :cell-style="{'text-align':'center'}"
+            tooltip-effect="dark"
+            style="width: 100%"
+            @selection-change="handleSelectionChange"
+          >
+            <el-table-column type="selection" :selectable="selectHandle" width="55"></el-table-column>
+            <el-table-column width="150" prop="lac" label="单灯地址">
+              <!-- <template slot-scope="scope">{{ scope.row.date }}</template> -->
+            </el-table-column>
+            <el-table-column prop="online" label="在线状态">
+              <i
+                slot-scope="scope"
+                v-if="scope.row.online ==1"
+                class="el-icon-success"
+                style="color:lightgreen;font-size: 20px;"
+              ></i>
+              <i
+                slot-scope="scope"
+                v-else
+                class="el-icon-error"
+                style="color:#999;font-size: 20px;"
+              ></i>
+            </el-table-column>
 
-               <!-- <div>
-                    <el-button type="primary" @click="mainon">主灯开</el-button>
-                    <el-button type="primary">辅灯开</el-button>
-                    主灯调光：<el-input  v-model="num1" placeholder="0~100"></el-input>
+            <el-table-column prop="location" label="位置">文三路</el-table-column>
+            <el-table-column width="150" sortable prop="numbering" label="编号"></el-table-column>
+            <el-table-column prop="lightSource" label="光源">未知</el-table-column>
+            <el-table-column prop="activePower" label="总功率(W)">
+              <p
+                slot-scope="scope"
+                v-if="scope.row.activePower"
+              >{{ (scope.row.activePower).toFixed(2) }}</p>
+              <p v-else slot-scope="scope">--</p>
+            </el-table-column>
 
-                    <el-button type="primary" @click="confirm1">确认</el-button>
-                    辅灯调光：<el-input v-model="num2" placeholder="0~100"></el-input>
-                    <el-button  type="primary" @click="confirm2">确认</el-button>
+            <el-table-column prop="voltage" label="电压(V)">
+              <p v-if="scope.row.voltage" slot-scope="scope">{{ (scope.row.voltage).toFixed(2) }}</p>
+              <p v-else slot-scope="scope">--</p>
+            </el-table-column>
+            <el-table-column prop="lightCurrent" label="电流(A)">
+              <p
+                v-if="scope.row.lightCurrent"
+                slot-scope="scope"
+              >{{ (scope.row.lightCurrent).toFixed(2) }}</p>
+              <p v-else slot-scope="scope">--</p>
+            </el-table-column>
+            <el-table-column prop="pf" label="功率因数">
+              <p v-if="scope.row.pf" slot-scope="scope">{{ (scope.row.pf).toFixed(2) }}</p>
+              <p v-else slot-scope="scope">--</p>
+            </el-table-column>
+            <el-table-column prop="mainLight" label="主灯">
+              <el-progress
+                v-if="scope.row.mainLight"
+                slot-scope="scope"
+                :text-inside="true"
+                :stroke-width="24"
+                :percentage="scope.row.mainLight"
+                status="success"
+              ></el-progress>
+              <el-progress
+                v-else
+                slot-scope="scope"
+                :text-inside="true"
+                :stroke-width="24"
+                :percentage="0"
+                status="success"
+              ></el-progress>
+            </el-table-column>
+            <el-table-column prop="mainLightStatus" label="状态">
+              <i
+                v-if="scope.row.mainLightStatus"
+                slot-scope="scope"
+                class="el-icon-s-opportunity"
+                style="color:#FF9900;font-size: 24px;"
+              ></i>
+              <i
+                v-else
+                slot-scope="scope"
+                class="el-icon-s-opportunity"
+                style="font-size: 24px;color:#999"
+              ></i>
+            </el-table-column>
 
-                    <el-button type="success">策略一</el-button>
-                    <el-button type="success">策略二</el-button>
-                    <el-button type="success">策略三</el-button>
-
-                    <el-button type="success">分组一
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                    <el-button type="success">分组二
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                    <el-button type="success">分组三
-                        <i class="el-icon-setting"></i>
-                    </el-button>
-                </div> -->
-
-                <template>
-                <el-table
-                    ref="multipleTable"
-                    :data="tableData[1]"
-                    tooltip-effect="dark"
-                    style="width: 100%"
-                    @selection-change="handleSelectionChange"
-                >
-                    <el-table-column
-                    type="selection"
-                    width="55">
-                    </el-table-column>
-                    <el-table-column
-                    prop="address"
-                    label="单灯地址"
-                   >
-                    <!-- <template slot-scope="scope">{{ scope.row.date }}</template> -->
-                    </el-table-column>
-                    <el-table-column
-                    prop="section"
-                    label="在线状态"
-                    >
-                    <i class="el-icon-success" style="color:lightgreen;font-size: 20px;"></i>
-                    </el-table-column>
-                    <el-table-column
-                    prop="section"
-                    label="位置"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="lampnum"
-                    label="编号"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="light"
-                    label="光源"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="totalpower"
-                    label="总功率"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="mainlamp"
-                    label="主灯"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="auxlamp"
-                    label="辅灯"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="volt"
-                    label="电压"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                    prop="current"
-                    label="电流"
-                   >
-                    </el-table-column>
-                </el-table>
-            </template>
-            </el-main>
-        </el-container>
-    </div>
+            <el-table-column prop="0" label="辅灯">
+              <el-progress
+                slot-scope="scope"
+                :text-inside="true"
+                :stroke-width="24"
+                :percentage="0"
+                status="success"
+              ></el-progress>
+              <!-- <el-progress slot-scope="scope" :text-inside="true" :stroke-width="24" :percentage="scope.row.LightAdjustLevel2.Value" status="success"></el-progress> -->
+            </el-table-column>
+            <el-table-column prop="auxiliaryLightsStatus" label="状态">
+              <i
+                slot-scope="scope"
+                class="el-icon-s-opportunity"
+                style="font-size: 24px;color:#999"
+              ></i>
+              <!-- <i v-if="scope.row.LightSwitch2.Value  " slot-scope="scope" class="el-icon-s-opportunity" style="color:#FF9900;font-size: 24px;"></i>
+              <i v-else slot-scope="scope" class="el-icon-s-opportunity" style="font-size: 24px;color:#999"></i>-->
+            </el-table-column>
+            <el-table-column prop="deviceType" label="设备类型">4G单灯</el-table-column>
+          </el-table>
+          <div v-if="this.loading" class="progress-2"></div>
+          <!-- <div v-if="this.load" class="loading" >正在刷新,请稍等.....</div> -->
+          <div class="devnums">
+            <span>在线设备数量：{{ this.onlineDevicesNum }} 离线设备数量：{{ this.notOnlineDevicesNum }}</span>
+          </div>
+          <!-- 分页插件 -->
+          <div class="footer" v-if="total > 0">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="pageNum"
+              :page-size="pageSize"
+              background
+              layout="total, prev, pager, next,jumper"
+              :total="total"
+            ></el-pagination>
+          </div>
+        </template>
+      </el-main>
+    </el-container>
+  </div>
 </template>
 
 <script>
+import { Devicelist, Devicecontrol } from "@/request/api";
+import { successmsg, failmsg } from "../../../tools/tools";
+
 export default {
-    data() {
-        return {
-            // 多选数据
-            multipleSelection: [],
-            num1:'',
-            num2:'',
-            input:'',
-            tableData:[
-                [{
-                address: '000001000921',
-                section: '白华顶',
-                lampnum: '1',
-                light:'50W',
-                totalpower:'53.90',
-                mainlamp:'53.90',
-                auxlamp:'0.00',   
-                volt:'220.0',
-                current:'0.260'
-            },
-            {
-                address: '000001000922',
-                section: '白华顶',
-                lampnum: '2',
-                light:'50W',
-                totalpower:'53.90',
-                mainlamp:'53.90',
-                auxlamp:'0.00',
-                volt:'220.0',
-                current:'0.260'
-            },
-            ],
-           [{
-                address: '000001000921',
-                section: '测试',
-                lampnum: '1',
-                light:'50W',
-                totalpower:'53.90',
-                mainlamp:'53.90',
-                auxlamp:'0.00',
-                volt:'220.0',
-                current:'0.260'
-            },
-            {
-                address: '000001000922',
-                section: '测试',
-                lampnum: '2',
-                light:'50W',
-                totalpower:'53.90',
-                mainlamp:'53.90',
-                auxlamp:'0.00',
-                volt:'220.0',
-                current:'0.260'
-            },
-            ]],
-            // tableData1: [{
-            //     address: '000001000921',
-            //     section: '白华顶',
-            //     lampnum: '1',
-            //     light:'50W',
-            //     totalpower:'53.90',
-            //     mainlamp:'53.90',
-            //     auxlamp:'0.00',
-            //     volt:'220.0',
-            //     current:'0.260'
-            // },
-            // {
-            //     address: '000001000922',
-            //     section: '白华顶',
-            //     lampnum: '2',
-            //     light:'50W',
-            //     totalpower:'53.90',
-            //     mainlamp:'53.90',
-            //     auxlamp:'0.00',
-            //     volt:'220.0',
-            //     current:'0.260'
-            // },
-            // ],
-            // tableData2: [{
-            //     address: '000001000921',
-            //     section: '测试',
-            //     lampnum: '1',
-            //     light:'50W',
-            //     totalpower:'53.90',
-            //     mainlamp:'53.90',
-            //     auxlamp:'0.00',
-            //     volt:'220.0',
-            //     current:'0.260'
-            // },
-            // {
-            //     address: '000001000922',
-            //     section: '测试',
-            //     lampnum: '2',
-            //     light:'50W',
-            //     totalpower:'53.90',
-            //     mainlamp:'53.90',
-            //     auxlamp:'0.00',
-            //     volt:'220.0',
-            //     current:'0.260'
-            // },
-            // ],
+  data() {
+    return {
+      onlineDevicesNum: "", //在线数量
+      notOnlineDevicesNum: "",//离线数量
+      dataarr: [], // 控制数据
+
+      devicedata: { // 查询列表数据
+        productId: "SXOEH957YH",
+        offset: 1,
+        limit: 10
+      },
+      pageNum: 1, // 当前页
+      pageSize: 10, // 每页显示条目
+      total: "",// 数据总数
+      lamplist: [], // 服务端获取的设备数据
+      loading: true, // 加载
+      multipleSelection: [],// 多选数据
+      num1: "", //主灯调光
+      num2: "", //辅灯调光
+    };
+  },
+  created() {},
+  mounted() {
+    // 获取设备数据
+    this.getdevlist();
+    setInterval(() => {
+      // 获取设备数据
+      this.getdevlist();
+    }, 180000);
+  },
+  methods: {
+    // 刷新数据
+    reflshdata() {
+      this.loading = true
+      // 获取设备数据
+      this.getdevlist();
+    },
+    // 获取设备数据列表
+    async getdevlist() {
+      await Devicelist(this.devicedata)
+        .then(d => {
+          // 设备数据
+          this.lamplist = d.data.records;
+          // 总页数
+          this.total = d.data.totalNum;
+          this.onlineDevicesNum = d.data.onlineDevicesNum;
+          this.notOnlineDevicesNum = d.data.notOnlineDevicesNum;
+        })
+        .catch(e => {
+          console.log("设备数据列表接口调用失败");
+        });
+      this.loading = false;
+    },
+    // 分页
+    handleSizeChange(val) {
+      this.pageSize = val;
+      // this.loadPage(this.pageNum,this.pageSize);
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.loading = true;
+      this.pageNum = val;
+      this.devicedata.offset = this.pageNum;
+      this.lamplist = [];
+      this.getdevlist();
+      // this.loadPage(this.pageNum,this.pageSize);
+      console.log(`当前页: ${val}`);
+    },
+    // 不在线的全不可选
+    selectHandle(row, index) {
+      // console.log(row,'1111');
+      return !(row.online !== 1);
+    },
+    // 多选禁用
+    selectEnable(row, rowIndex) {
+      if (this.enabelIds.some(item => item === row.id)) {
+        return false;
+      } else {
+        return true; // 不禁用
+      }
+    },
+    //获取多选的数据
+    handleSelectionChange(val) {
+      this.multipleSelection = val; //存储选中的数据
+      console.log(val, "选中的数据");
+    },
+    // 策略一
+    startegyone() {
+      this.dataarr = [];
+      this.multipleSelection.map((value, index) => {
+        let obj = {
+          productId: "SXOEH957YH",
+          deviceName: "",
+          data: { supcmd: [68, 5, 1, 0] }
         };
-    },
-    created() {
+        value.supcmd = [68, 5, 1, 0];
 
-    },
-    mounted() {
+        obj.data.supcmd = value.supcmd;
 
-    },
-    methods: {
-        //获取多选的数据
-        handleSelectionChange(val) {
-            this.multipleSelection = val;//存储选中的数据
-            console.log(val);
-        },
-        // 打开主灯
-        mainon(){
+        obj.deviceName = value.lac;
 
-        },
-        // 目录跳转刷新数据
-        readinfo(index){
-            console.log(index);  
-            this.tableData[1]= this.tableData[index]
-            console.log(this.tableData[1]);
-            console.log(this.tableData[index]);
-        },
-        // 修改主灯亮度确认
-        confirm1(){
-            this.multipleSelection.forEach((value,index)=>{
-                console.log(value,index);
-                this.tableData.forEach((val,ind)=>{
-                    if(value.address==val.address){
-                        this.tableData[ind].mainlamp = Number(this.num1).toFixed(2)
-                    }
-                })
-
-            })
-        },
-         // 修改辅灯亮度确认
-         confirm2(){
-            this.multipleSelection.forEach((value,index)=>{
-                console.log(value,index);
-                this.tableData.forEach((val,ind)=>{
-                    if(value.address==val.address){
-                        this.tableData[ind].auxlamp = Number(this.num2).toFixed(2)
-                    }
-                })
-
-            })
+        this.dataarr.push(obj);
+      });
+    // 设备控制
+      Devicecontrol(this.dataarr).then(d => {
+        // console.log(d.data,'策略一反馈');
+        if (d.data.length == 0) {
+          successmsg("开启成功");
+          // 获取设备数据
+          this.getdevlist();
+        } else {
+          successmsg("操作失败，设备不在线");
         }
+      });
+    },
+    // 打开主灯
+    mainon() {
+      this.dataarr = [];
+
+      this.multipleSelection.map((value, index) => {
+        let obj = {
+          productId: "SXOEH957YH",
+          deviceName: "",
+          data: { LightSwitch1: 0 }
+        };
+        value.mainLightStatus = 1;
+        obj.data.LightSwitch1 = value.mainLightStatus;
+
+        obj.deviceName = value.lac;
+
+        this.dataarr.push(obj);
+      });
+      // 设备控制
+      Devicecontrol(this.dataarr).then(d => {
+        // console.log(d,'开灯反馈');
+        if (d.data.length == 0) {
+          successmsg("开启成功");
+          // 获取设备数据
+          this.getdevlist();
+        } else {
+          successmsg("操作失败，设备不在线");
+        }
+      });
+    },
+    // 主灯关
+    mainoff() {
+      this.dataarr = [];
+
+      this.multipleSelection.map((value, index) => {
+        let obj = {
+          productId: "SXOEH957YH",
+          deviceName: "",
+          data: { LightSwitch1: 0 }
+        };
+        value.mainLightStatus = 0;
+        obj.data.LightSwitch1 = value.mainLightStatus;
+        obj.deviceName = value.lac;
+
+        this.dataarr.push(obj);
+      });
+      // 设备控制
+      Devicecontrol(this.dataarr).then(d => {
+        // console.log(d,'关灯反馈');
+        if (d.data.length == 0) {
+          successmsg("关闭成功");
+          // 获取设备数据
+          this.getdevlist();
+        } else {
+          successmsg("操作失败，设备不在线");
+        }
+      });
+    },
+    // 打开辅灯
+    auxon() {
+      
+    },
+    // 辅灯关
+    auxoff() {
+        
+    },
+    // 修改主灯亮度确认
+    confirm1() {
+      this.dataarr = [];
+
+      this.multipleSelection.map((value, index) => {
+
+        let obj = {
+          productId: "SXOEH957YH",
+          deviceName: "",
+          data: { LightAdjustLevel1: 1 }
+        };
+
+        value.mainLight = Number(this.num1);
+
+        obj.data.LightAdjustLevel1 = value.mainLight;
+
+        obj.deviceName = value.lac;
+
+        this.dataarr.push(obj);
+      });
+    // 设备控制
+      Devicecontrol(this.dataarr).then(d => {
+        if (d.data.length == 0) {
+        
+          setTimeout(() => {
+            // 获取设备数据
+            this.getdevlist();
+            successmsg("调光成功");
+          }, 1000);
+
+        } else {
+          successmsg("操作失败，设备不在线");
+        }
+      });
+    }
+  },
+  // 修改辅灯亮度确认
+  confirm2() {
+    
     }
 };
 </script>
 
 <style scoped>
-.el-row .el-button{
-    width: 80px;
+.progress-2 {
+    position:absolute; 
+    left:58vw; 
+    top:40vh; 
+    width:120px;
+    height:20px;
+    border-radius: 20px;
+    background:
+   linear-gradient(skyblue 0 0) 0/0% no-repeat
+   lightblue;
+  animation:p2 2s infinite steps(10);
 }
-.el-row .el-button:nth-child(10){
-    width: 200px;
+@keyframes p2 {
+    100% {background-size:110%}
 }
-.el-row .el-col{
-    width: 290px;
+/* 加载中 */
+.loading{
+    position:absolute; 
+    left:55vw; 
+    top:40vh; 
+    width:140px; 
+    height:20px; 
+    z-index:1;
+    border:#999 solid 1px
 }
-  .rowlist .el-col {
-    margin: 2px;
-    width: 80px;
-  }
-  .el-row .el-col:nth-child(3){
-    width: 190px;
-  }
-  .el-row .el-col:nth-child(5){
-    width: 190px;
-  }
-  .el-row .el-col:nth-child(10){
-    margin-left: 10px;
-    width: 100px;
-  }
-  .el-row .el-col:nth-child(10) .el-button{
-    width: 90px;
-  }
-  .el-row .el-col:nth-child(11){
-    width: 100px;
-  }
-  .el-row .el-col:nth-child(11) .el-button{
-    width: 90px;
-  }
-  .el-row .el-col:nth-child(12){
-    width: 100px;
-  }
-  .el-row .el-col:nth-child(12) .el-button{
-    width: 90px;
-  }
-    .el-main .el-input{
-        width: 80px;
-        margin-right: 10px;
-    }
-    .el-submenu .el-menu-item{
-        width: 250px;
-    }
-    .el-submenu .el-menu-item:hover{
-        background: skyblue!important;
-        color: #fff!important;
-    }
-    .el-container{
-    margin: -20px;
-    padding: 0;
-    }
-  .el-aside {
-    background-color: #fff;
-    color: #333;
-    text-align: left;
-    height: 100vh;
-    font-size: 12px;
-    overflow: scroll;
-    border-right: #999 solid 1px;
-  }
-  
-  .el-main {
-    background-color: #fff;
-    color: #333;
-  }
+/* 设备数量 */
+.devnums {
+  z-index: 2;
+  position: fixed;
+  bottom: 150px;
+  font-size: 14px;
+  color: #000;
+}
+/* 页码 */
+.footer {
+  z-index: 2;
+  position: fixed;
+  bottom: 40px;
+  width: 100%;
+  line-height: var(--footer-height);
+  color: #fff;
+}
+
+/* 进度条 */
+.el-table .el-progress-bar .el-progress-bar__inner {
+  border-radius: inherit !important;
+}
+/* 景区列表宽度 */
+.el-row .el-col {
+  width: 229px;
+}
+/* 按钮列表 */
+.rowlist {
+  overflow: auto;
+  display: flex;
+  align-items: center;
+}
+.rowlist li {
+  margin: 5px;
+  width: 80px;
+}
+/* 两个调光文字 */
+.rowlist li:nth-child(5),
+li:nth-child(8) {
+  width: 60px;
+}
+/* 两个确认按钮 */
+.rowlist li:nth-child(7),
+li:nth-child(10) {
+  width: 65px;
+}
+.rowlist li p {
+  width: 60px;
+  font-size: 14px;
+}
+/* 两个调光的输入框 */
+.el-main .el-input {
+  margin-right: 10px;
+}
+/* 导航栏宽度 */
+.el-submenu .el-menu-item {
+  width: 229px;
+}
+/* 移入变色 */
+.el-submenu .el-menu-item:hover {
+  background: skyblue !important;
+  color: #fff !important;
+}
+/* 与主导航栏距离 */
+.el-container {
+  margin: -20px;
+  padding: 0;
+}
+.el-aside {
+  background-color: #fff;
+  text-align: left;
+  height: calc(100vh - 60px);
+  /* overflow: scroll; */
+  border-right: #999 solid 1px;
+}
+
+.el-main {
+  background-color: #fff;
+  color: #333;
+}
 </style>
